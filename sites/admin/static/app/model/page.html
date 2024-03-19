@@ -1,0 +1,87 @@
+<div class="pageActivity">
+    <div class="bar">
+        <div ></div>
+        <div>{{model_obj.label}}</div>
+        <div @click="model_edit()">
+            <i class="fa-solid fa-plus"></i>新建
+        </div>
+        
+    </div>
+    <div class="pageBody">
+        <div v-if="waiting.loading"
+            style="height: 30vh; display: flex; justify-content: center; align-items: center;">
+            <div class="spinner-border" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
+        <div v-else >
+            <div class="toolbar">
+                <div>
+                    <button v-if="selected.length" class="btn btn-danger" @click="delete_objs()">删除</button>
+                </div>
+                <div>
+                    <div class="btn btn-secondary" @click="set_fields()">
+                        <i class="fas fa-sliders-h"></i>
+                    </div>    
+                </div>
+            </div>
+            <div style="padding: 0 1rem">
+            
+                <div style="overflow-x: auto;">
+                    <table class="table">
+                        <tr>
+                            <th style="width: 1rem">
+                                <input type="checkbox" v-model="selected_all" :value="true">
+                            </th>
+                            <th v-for="field in fields" v-if="field.show" :style="{width: field.primary_key?'1rem':'auto'}">
+                                {{get_label(field)}}
+                                <i class="fas fa-key" v-if="field.primary_key"></i>
+                            </th>
+                            <th style="width: 3rem;">操作</th>
+                        </tr>
+                        <tr v-for="obj in object_list">
+                            <td >
+                                <input type="checkbox" :value="get_pk(obj)" v-model="selected">
+                            </td>
+                            <td v-for="field in fields" v-if="field.show" >
+                                <div  v-if="field.type=='image'" style="display: flex;  align-items: center;">
+                                    <img :src="get_value(obj, field)" @load="set_size($event, obj, field)">
+                                    <div >{{get_size(obj, field)}}</div>
+                                </div>
+                                <div v-html="get_value(obj, field)" v-else></div>
+                            </td>
+                            <td>
+                                <button class="link" @click="model_edit(obj)">编辑</button>
+                            </td>
+                        </tr>
+                        <tr v-if="object_list.length==0">
+                            <td :colspan="fields.length+2" style="text-align: center">
+                                暂无数据
+                            </td>
+                        </tr>            
+                    </table>                
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="center" style="padding: 0.5rem 1rem;">
+        <button class="link" @click="get_next_page(-1)">上一页</button>
+        第<input v-model.number="current_page" class="page">页
+        <span class="weak">共{{get_last_page()}}页</span>
+        <button class="link" @click="get_next_page(1)">下一页</button>        
+    </div>
+
+</div>
+<div class="dialog" :class="{active: is_delete_objs}">
+    <div>
+        <div class="bar">
+            <h1>删除确认</h1>
+            <i class="fas fa-times-circle" @click="is_delete_objs=false"></i>
+        </div>
+        <div class="body">是否删除选中的数据</div>
+        <div class="footer">
+            <button class="btn btn-danger" @click="delete_objs(true)">确认</button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,77 @@
+<div class="pageActivity">
+    <div class="bar">
+        <div></div>
+        <div>系统概览</div>
+        <div></div>
+    </div>
+    <div class="pageBody">
+        <div>
+            <div class="block">
+                <table class="table">
+                    <tr>
+                        <th>数据集</th>
+                        <th>数据库引擎</th>
+                    </tr>
+                    <tr v-for="(v, k) of info.database">
+                        <th>{{k}}</th>
+                        <td>{{v.engine}}</td>
+                    </tr>
+                    <tr >
+                        <th>Media Size</th>
+                        <td>{{media.size}}</td>
+                    </tr>
+                </table>    
+            </div>    
+            <div class="memory-block" v-if="top">
+                <small>{{top.now}}</small>
+                <div>
+                    <p style="margin: 0;" v-for="x of top.info" v-html="x"></p>
+                </div>
+                <button class="btn btn-primary" @click="getTop">刷新</button>
+            </div>    
+
+
+        </div>
+        <div>
+            <div class="block">
+                <small>{{now}}</small>
+                <table class="table">
+                    <tr>
+                        <th>累计连接</th>
+                        <td>{{info.TOTAL_CONNECT}}</td>
+                    </tr>
+                    <tr>
+                        <th>累计请求</th>
+                        <td>{{info.TOTAL_REQUEST}}</td>
+                    </tr>
+                    <tr>
+                        <th>非法请求</th>
+                        <td>{{info.BAD_REQUEST}}</td>
+                    </tr>
+                    <tr>
+                        <th>有效请求</th>
+                        <td>{{info.VALID_REQUEST}}</td>
+                    </tr>
+                    <tr>
+                        <th>静态请求</th>
+                        <td>{{info.STATIC_REQUEST}}</td>
+                    </tr>
+                    <tr>
+                        <th>当前连接</th>
+                        <td>{{info.CURRENT_CONNECT}}</td>
+                    </tr>
+                </table> 
+                <button class="btn btn-primary" @click="getOverview">刷新</button>   
+            </div>
+            <div class="memory-block" v-if="memory">
+                <small>{{memory.now}}</small>
+                <div>
+                    <p style="margin: 0;" v-for="x of memory.info" v-html="x"></p>
+                </div>
+                <button class="btn btn-primary" @click="getMemory">刷新</button>
+            </div>    
+
+        </div>
+
+    </div>
+</div>

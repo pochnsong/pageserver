@@ -1,0 +1,43 @@
+#page .pageBody{
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0.5rem;
+}
+#page .pageBody>div{
+    width: 50%;
+    padding: 0.5rem;
+}
+#page .block{
+    background: #fff;
+    border-radius: 8px;
+    padding: 1rem;
+}
+#page .memory-block{
+    margin-top: 1rem;
+    background-color: #333;
+    color: burlywood;
+    border-radius: 8px;
+    padding: 1rem;
+}
+#page .block>small,
+#page .memory-block>small{
+    text-align: right;
+    display: block;
+}
+#page .memory-block>div{
+    font-family: monospace; 
+    white-space: nowrap; 
+    overflow-x: auto;
+    padding: 1rem 0;
+}
+#page .block>button,
+#page .memory-block>button{
+    display: block; margin: 0 auto;
+}
+
+@media screen and (max-width: 768px) {
+    #page .pageBody>div{
+        width: 100%;
+    }
+}
+  

@@ -1,0 +1,11 @@
+#page .pageBody{
+    padding: 1rem;
+}
+
+#page .items>div{
+    display: inline-block;
+    padding: 1rem;
+    cursor: pointer;
+    background: #fff;
+    border-radius: 5px;
+}

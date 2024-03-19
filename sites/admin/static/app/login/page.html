@@ -1,0 +1,14 @@
+<div class="login">
+    <div style="height: 100vh; display: flex; align-items: center; justify-content: center;">
+        <div class="form">
+            <div style="text-align: center; font-size: 0.8rem;">
+                <h5>数据中心</h5>
+                <div>{{now}}</div>
+                <input v-model="form.usr" placeholder="用户名">
+                <input v-model="form.pwd" placeholder="密钥" type="password" @keydown.enter="login">
+                <button @click="login">登录</button>
+            </div>
+        </div>
+    </div>
+
+</div>

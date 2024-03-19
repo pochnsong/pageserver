@@ -1,0 +1,52 @@
+<div class="dialog active" >
+    <div>
+        <div class="bar">
+            <h1>编辑</h1>
+            <i class="fa-solid fa-times-circle" @click="main.go_back()"></i>
+        </div>
+        <div class="body">
+            <div class="part-form">
+                <div class="part">
+                    <div v-for="field in fields" v-if="field.type!='auto'" class="item">
+                        <label :class="{required: !field.nullable}">{{get_label(field)}}</label>
+                        <div>
+                            <select class="form-select" v-if="field.type=='select'" v-model="form[field.name]">
+                                <option :value="option[0]" v-for="option of field.choice">{{option[1]}}</option>
+                            </select>
+                            <input type="date" v-if="field.type=='date'" v-model="form[field.name]" >
+                            <input type="text" v-if="field.type=='char'" v-model="form[field.name]" >
+                            <input type="text" v-if="field.type=='float'" v-model="form[field.name]" >
+                            <input type="number" v-if="field.type=='int'" v-model="form[field.name]" >
+                            <input type="number" v-if="field.type=='timestamp'" v-model="form[field.name]">
+                            <textarea style="width:100%" v-if="field.type=='text'" v-model="form[field.name]" rows="5"></textarea>
+                            <div v-if="field.type=='image'">
+                                <img :src="'/media/'+form[field.name]">
+                                <input type="file" @change="select_file($event, field)">
+                            </div>
+                            <div v-if="field.type=='file'">
+                                {{form[field.name]}}
+                                <input type="file" @change="select_file($event, field)">
+                            </div>
+                            <div v-if="field.type=='bool'">
+                                <label><input type="radio" v-model="form[field.name]" value="1">是</label>
+                                <label><input type="radio" v-model="form[field.name]" value="0">否</label>
+                            </div>
+                            <span class="words" v-if="field.max_length && field.type!='select'">{{getWords(field)}}/{{field.max_length}}</span>
+                        </div>
+                    </div>
+                </div>    
+            </div>
+        </div>
+        <div class="footer">
+            <div style="display: flex; justify-content:space-between;" v-if="!waiting.submit">
+                <div>
+                    <button class="btn danger" @click="delete_obj()">删除</button>    
+                </div>
+                <div>
+                    <button class="btn ok" @click="submit()">确认</button>    
+                </div>
+            </div>
+            <div v-else>提交中...</div>    
+        </div>
+    </div>
+</div>

@@ -1,0 +1,13 @@
+<div class="fields-page">
+    <div>
+        <div style="padding: 1rem;" @click="main.go_back()">
+            <i class="fas fa-chevron-left"></i>
+        </div>
+    </div>
+    <div class="field" v-for="field in fields"  @click="toggle_field(field)">
+        <i class="far" :class="[field.show?'fa-check-square':'fa-square']"></i>
+        {{get_label(field)}}
+        <i class="fas fa-key" v-if="field.primary_key"></i>
+    </div>
+
+</div>

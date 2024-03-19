@@ -1,0 +1,60 @@
+<div class="pageActivity">
+    <div class="bar">
+        <div ></div>
+        <div>导出数据</div>
+        <div></div>
+        
+    </div>
+    <div class="pageBody">
+        <div class="panel">
+            <input ref="inputFile" type="file">
+            <button class="btn ok" @click="importData">导入</button>
+            <button class="btn ok" @click="exportData">导出</button>
+        </div>
+        <div v-if="waiting.loading"
+            style="height: 30vh; display: flex; justify-content: center; align-items: center;">
+            <div class="spinner-border" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
+        <div class="block-group" v-else >            
+            <div style="overflow-x: auto;">
+                <table class="table">
+                    <tr>
+                        <th >
+                            <i class="fa-regular" :class="[selected_all?'fa-square-check':'fa-square']" @click="selectAll()"></i>
+                        </th>
+                        <th>数据表</th>
+                        <th>说明</th>
+                    </tr>
+                    <tr v-for="obj in object_list">
+                        <td >
+                            <input type="checkbox" :value="obj.model_name" v-model="selected">
+                        </td>
+                        <td >
+                            {{obj.model_name}}
+                        </td>
+                        <td >
+                            {{obj.label}}
+                        </td>
+                    </tr>
+        
+                </table>                
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="dialog" :class="{active: message.list.length}">
+    <div>
+        <div class="bar">
+            <h1>消息</h1>
+        </div>
+        <div style="padding: 1rem;" class="body">
+            <div v-for="m of message.list">{{m}}</div>
+        </div>
+        <div class="footer">
+            <button class="btn" @click="message.list=[]" v-if="!message.lock">关闭</button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,11 @@
+#page{
+    background-color: transparent;
+}
+.part {
+    width: 100%;
+}
+.part img{
+    width: 128px;
+    height: 128px;
+    object-fit: contain;
+}

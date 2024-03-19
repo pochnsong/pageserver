@@ -1,0 +1,10 @@
+class ListAPI:
+    joins = [
+        {
+            'field': 'user_id',
+            'model_class': User,
+            'link_field': "id",
+            'link_name': 'user',
+            'columns': ['id', 'name', 'gender', 'phone'],
+        },
+    ]

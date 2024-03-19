@@ -1,0 +1,70 @@
+<div class="pageActivity">
+    <div class="bar">
+        <div ></div>
+        <div>管理员</div>
+        <div @click="edit(null)">
+            新建
+        </div>
+        
+    </div>
+    <div class="pageBody" style="background: #f0f0f0">
+        <div v-if="waiting.loading"
+            style="height: 30vh; display: flex; justify-content: center; align-items: center;">
+            <div class="spinner-border" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
+        <div v-else >
+            <div style="padding: 1rem;">
+            
+                <div style="overflow-x: auto;">
+                    <table class="table">
+                        <tr>
+                            <th>ID</th>
+                            <th style="width: 50%;">账号</th>
+                            <th style="width: 50%;">昵称</th>
+                            <th style="width: 2rem;">SU</th>
+                            <th style="width: 2rem;">有效</th>
+                            <th style="width: 11rem;">密钥时间</th>
+                            <th style="width: 4rem;">操作</th>
+                        </tr>
+                        <tr v-for="obj in object_list">
+                            <td >
+                                {{obj.id}}
+                            </td>
+                            <td >
+                                {{obj.username}}
+                            </td>
+                            <td >
+                                {{obj.nickname}}
+                            </td>
+                            <td>
+                                <i class="fas fa-check-circle" v-if="obj.is_super"></i>
+                            </td>
+                            <td>
+                                <i class="fas fa-check-circle" v-if="obj.is_active"></i>
+                                <i class="fas fa-times-circle" style="color: red" v-else></i>
+                            </td>
+                            <td >
+                                {{Display.datetime(obj.token)}}
+                            </td>
+                            <td>
+                                <button class="link" @click="edit(obj)">编辑</button>
+                            </td>
+                        </tr>
+            
+                    </table>                
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="flex-center" style="padding: 0.5rem 1rem; background:#f0f0f0">
+        <button class="link" @click="get_next_page(-1)">上一页</button>
+        第<input v-model.number="current_page" class="page">页
+        <span class="weak">共{{get_last_page()}}页</span>
+        <button class="link" @click="get_next_page(1)">下一页</button>        
+    </div>
+
+</div>

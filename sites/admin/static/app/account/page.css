@@ -1,0 +1,19 @@
+.table th,
+.table td{
+    white-space: nowrap;
+    vertical-align: middle;
+}
+
+.toolbar{
+    padding: 0.5rem;
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: space-between;
+}
+.fa-key{
+    color: orange;
+}
+
+.fa-check-circle{
+    color: green;    
+}

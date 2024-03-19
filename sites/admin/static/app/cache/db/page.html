@@ -1,0 +1,53 @@
+<div class="pageActivity">
+    <div class="bar">
+        <div @click="main.go_back()">
+            <i class="fa-solid fa-chevron-left"></i>
+        </div>
+        <div>数据缓存:{{filters.db}}</div>
+        <div @click="getList">刷新</div>
+        
+    </div>
+    <div class="pageBody">
+        <i class="fa-solid fa-spinner loading" v-if="waiting.loading"></i>
+        <div class="items">
+            <div v-for="obj in object_list" @click="getValue(obj)">
+                {{obj}}
+            </div>
+        </div>
+    </div>
+
+    <div class="center" style="padding: 0.5rem 0;">
+        <button class="link" @click="get_next_page(-1)">上一页</button>
+        第<input v-model.number="current_page" class="page">页
+        <span class="weak">共{{get_last_page()}}页</span>
+        <button class="link" @click="get_next_page(1)">下一页</button>        
+    </div>
+
+</div>
+<div class="dialog" :class="{active: value.show}">
+    <div>
+        <div class="bar">
+            <h1>{{value.k}}</h1>
+            <i class="fa-solid fa-times-circle" @click="value.show=false"></i>
+        </div>
+        <div style="padding: 1rem;" class="body">
+            <table class="table">
+                <tr>
+                    <th>数据类型</th>
+                    <td>{{value.t}}</td>
+                </tr>
+                <tr>
+                    <th>过期时间</th>
+                    <td>{{value.ttl}}秒</td>
+                </tr>
+            </table>
+            <div>
+                {{value.v}}
+            </div>
+        </div>
+        <div class="footer">
+            <button class="btn danger" @click="deleteCache()">删除</button>
+            <button class="btn" @click="value.show=false">关闭</button>
+        </div>
+    </div>
+</div>

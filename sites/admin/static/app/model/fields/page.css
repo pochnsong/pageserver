@@ -1,0 +1,14 @@
+.fields-page{
+    width: 300px; 
+    min-height: 100vh; 
+    background: #fff; 
+    float: right;
+    border-left: 1px solid #f0f0f0;
+}
+.field{
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+}
+.field:hover{
+    background-color: #f0f0f0;
+}

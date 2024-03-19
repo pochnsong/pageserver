@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="pubkey" content="{0}">
+    <link rel="stylesheet" href="static/libs/fontawesome6/css/all.min.css">
+    <link rel="stylesheet" href="static/app/app.css">
+    <link rel="stylesheet" href="static/app/menu.css?v=1">
+
+    <title>数据中心</title>
+  </head>
+  <body>
+    <div class="body" >
+      <div class="menu" id="menu"></div>
+      <div id="main" style="flex-grow: 1;"></div>
+    </div>
+
+    <div class="dialog" id="id_relogin">
+      <div class="dialog-body" style="max-width: 600px">
+          <div class="body" style="text-align: center; padding: 1rem">
+              当前凭证已失效，点击确定重新登录
+          </div>
+          <div class="footer">
+              <button class="btn btn-ok" onclick="$reLogin(true)">确认</button>    
+          </div>
+      </div>
+    </div>    
+
+    <script src="static/libs/vue.min.js"></script>
+    <script src="static/libs/uiplugs.js"></script>
+    <script src="static/app/libs/display.js"></script>
+    <script src="static/app/libs/system.js"></script>
+    <script src="static/app/libs/menu.js?v=1.1"></script>
+    <script src="static/app/app.js" type="module"></script>
+
+  </body>
+</html>

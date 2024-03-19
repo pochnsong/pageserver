@@ -1,0 +1,23 @@
+V3.311.0
+变更分支命名方式为 V{主版本}.{Python版本}.{子版本}，例: V3.311.0
+升级python版本为 >= 3.11
+升级所有路由函数为协程函数
+API增加 use_thead 参数，使用线程方式，将同步阻塞函数变为非阻塞协程函数
+变更Consumer 等待消息函数为 asyncio.TaskGroup
+去除aioredis依赖，需要 redis>4.2.0rc1
+变更Field.verbose_name属性为Field.label
+变更admin为websocket模式
+CharField 变更为 VarCharField， 重写CharField为固定长度存储
+
+V2.0.2
+统一Helper返回 [(sql, param),(sql, param)]
+
+v2.0.1
+增加版本号 pageserver.VERSION = "2.0.1"
+数据query 删除 to_json参数，增加to参数, 可取值 model, dict, list
+合并 db.Helper select 和 select_join
+增加 PermListAPI data_format: model, dict, list
+优化db dataset_format 代码
+增加 db.function Count, Sum
+: Query.select([Count('*')]).one(to="dict")
+优化代码 去除 db.count db.sum

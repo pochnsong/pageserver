@@ -1,0 +1,20 @@
+#page .table th,
+#page .table td{
+    white-space: nowrap;
+    vertical-align: middle;
+}
+
+#page .toolbar{
+    padding: 0.5rem;
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: space-between;
+}
+#page .fa-key{
+    color: orange;
+}
+#page td img{
+    width: 64px;
+    height: 64px;
+    object-fit: cover;
+}

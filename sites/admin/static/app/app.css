@@ -1,0 +1,329 @@
+*{
+  box-sizing: border-box;
+}
+:root{
+  --main: #0b5ed7;
+}
+html {
+  font-size: 16px;
+}
+body {
+  margin: 0;
+  padding: 0;
+  color: #222;
+}
+.body {
+  display: flex;
+}
+.dialog {
+  position: fixed;
+  display: none;
+  overflow: hidden;
+  top: 0;
+  left: 0;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 100vw;
+  height: 100vh;
+  z-index: 1000;
+}
+.dialog.active {
+  display: flex;
+}
+.dialog>div {
+  width: 80%;
+  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  background-color: #fff;
+  border-radius: 0.3rem;
+}
+
+.dialog>div .bar {
+  display: flex;
+  justify-content: space-between;
+  background-color: #f0f0f0;
+}
+.dialog>div .bar>h1 {
+    font-weight: bold;
+    cursor: move;
+    flex: 1 0;
+    margin: 0;
+    font-size: 1rem;
+    line-height: 3rem;
+    padding:  0 1rem;
+}
+
+.dialog>div .bar>.fa-times-circle {
+    color: #666;
+    cursor: pointer;
+    display: block;
+    padding: 0 1rem;
+    line-height: 3rem;
+    font-size: 1.5rem;
+}
+.dialog>div .bar>.fa-times-circle:hover {
+    color: #dc3545;
+}
+.dialog>div .body {
+  flex-grow: 1;
+  max-height: 70vh;
+  overflow: auto;
+  display: block;
+}
+.dialog>div .footer {
+  text-align: center;
+  padding: 1rem;
+  background-color: #f0f0f0;
+}
+.dialog>div .footer .btns {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.pageActivity {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background-color: #fff;
+}
+.pageActivity > div {
+  flex-shrink: 0;
+}
+.pageActivity>.bar {
+  width: 100%;
+  height: 2.6rem;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #fff;
+  color: var(--main);
+  font-size: 1.1rem;
+
+  text-align: center;
+  z-index: 100;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.pageActivity>.bar > *:first-child,
+.pageActivity>.bar > *:last-child{
+  width: 64px;
+  cursor: pointer;
+  line-height: 2.6rem;
+  color: var(--main);
+  background-color: #fff;
+  font-size: 0.9rem;
+}
+
+.pageActivity>.bar > *:first-child:hover,
+.pageActivity>.bar > *:last-child:hover {
+  background-color: var(--main);
+  color: #fff;
+}
+
+.pageActivity>.pageBody {
+  flex-grow: 1;
+  flex-shrink: 1;
+  overflow-x: hidden;
+  background-color: #f1f2f6;
+}
+
+
+.pageActivity .pageFloatBtn {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 100px;
+  border: none;
+}
+
+.block-group{
+  margin: 1rem;
+  border-radius: 8px;
+  padding: 1rem;
+  background-color: #fff;
+}
+
+input.line {
+  border-top: 0;
+  border-left: 0;
+  border-right: 0;
+  width: 100%;
+  padding: 0 1rem;
+  text-align: right;
+  background: transparent;
+}
+input.page {
+  width: 4rem;
+  text-align: center;
+  border: none;
+  display: inline-block;
+  margin: 0 0.5rem;
+}
+
+
+.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.part-form {
+  background-color: #f0f0f0;
+  padding: 1rem;
+}
+.part {
+  background-color: #fff;
+  padding: 0 1rem;
+  border-radius: 8px;
+}
+.part-form .part {
+  margin-bottom: 1rem;
+}
+.part-form .part:last-child {
+  margin-bottom: 0;
+}
+
+.part .item {
+  display: flex;
+  padding: 5px;
+  min-height: 50px;
+  align-items: center;
+  border-bottom: 1px solid #e5e5e5;
+}
+.part .item > label {
+  width: 6rem;
+  flex-shrink: 0;
+  border-right: 1px solid #e5e5e5;
+}
+.part .item .required:after {
+  content: "*";
+  color: red;
+}
+
+.part .item>input {
+  background: none;
+  border: none;
+  outline: none;
+  color: #555;
+  width: 100%;
+  padding: 0 1rem;
+}
+
+.part .item textarea {
+  padding: 10px;
+  background: none;
+  border: none;
+  outline: none;
+  color: #555;
+  font-size: 1rem;
+}
+.part .words {
+  color: #999;
+  padding-left: 0 1rem;
+  font-size: 0.9rem;
+}
+.part .item > div {
+    flex: 1 0;
+    display: flex;
+    align-items: center;
+    padding-left: 1rem;
+}
+.part .item > div>*:last-child {
+    padding-left: 0.5rem;
+}
+
+.part .item > div input[type=number],
+.part .item > div input[type=password],
+.part .item > div input[type=text]{
+    flex: 1 0;
+    background: none;
+    border: none;
+    outline: none;  
+    color: #555;
+}
+
+.link {
+  border: none;
+  color: #0b5ed7;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+button,
+table,
+input{
+  font-size: inherit;
+}
+
+/* toast框样式 */
+
+.r100 {
+  border-radius: 100px;
+}
+.loading{
+  display: block;
+  position: fixed;
+  top: 50vh;
+  left: 50vw;
+  width: 100px;
+  height: 100px;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  line-height: 100px;
+  text-align: center;
+  font-size: 30px;
+  transform: translate(50%, -50%);
+  border-radius: 8px; 
+}
+.more {
+  text-align: center;
+  padding: 1rem;
+  color: #909399;
+}
+
+.weak {
+  color: #909399;
+}
+
+
+.table{
+  width: 100%;
+  background-color: #fff;
+}
+
+.table th,
+.table td{
+  padding: 0.6rem;
+  text-align: left;
+  border-bottom: 1px solid #f0f0f0;
+}
+.table tr:last-child td{
+  border-bottom: none;
+}
+
+.btn{
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 6px;
+}
+
+.btn.ok{
+  background: #0b5ed7;
+  color: #fff;
+}
+.btn.danger{
+  background: #dc3545;
+  color: #fff;
+}
+
+@media screen and (max-width: 768px) {
+  .body {
+    flex-direction: column;
+  }
+}

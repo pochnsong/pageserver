@@ -1,0 +1,135 @@
+<div class="dialog active" >
+    <div >
+        <div class="bar">
+            <h1>编辑</h1>
+            <i class="fas fa-times-circle" @click="main.go_back()"></i>
+        </div>
+        <div class="body">
+            <div class="part-form">
+                <div class="part" v-if="obj">
+                    <div class="item">
+                        <label >登录帐号</label>
+                        <div>{{obj.username}}</div>
+                    </div>
+                    <div class="item">
+                        <label >登录密码</label>
+                        <div>
+                            <span style="color:orange">单向加密密码，无法查看，只能</span>
+                            <button class="link" @click="resetPassword">重置</button>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <label >登录函数</label>
+                        <div>
+                            <button class="link">重置</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="part" v-else>
+                    <div class="item">
+                        <label class="required">登录帐号</label>
+                        <div>
+                            <input type="text" v-model="form.username" placeholder="只能由数字和字母组成">
+                            <span class="words">{{form.username.length}}/32</span>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <label class="required">登录密码</label>
+                        <div>
+                            <input type="password" v-model="form.password" placeholder="设置密码">
+                            <span class="words">{{form.password.length}}/128</span>
+                        </div>
+
+                    </div>
+                    <div class="item">
+                        <label class="required">重复密码</label>
+                        <input  type="password" v-model="repeat" placeholder="重复密码">
+                    </div>
+
+                </div>
+
+                <div class="part">
+                    <div class="item">
+                        <label >昵称</label>
+                        <div>
+                            <input type="text" v-model="form.nickname" placeholder="未填写昵称">
+                            <span class="words">{{form.nickname.length}}/16</span>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <label >超级权限</label>
+                        <div>
+                            <input type="checkbox" v-model="form.is_super" >
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <label >激活</label>
+                        <div>
+                            <input type="checkbox" v-model="form.is_active">
+                        </div>
+                    </div>            
+                </div>    
+
+                <div class="part" v-if="obj">
+                    <div class="item">
+                        <label >创建时间</label>
+                        <div>{{Display.datetime(obj.create_time)}}</div>
+                    </div>
+                    <div class="item">
+                        <label >最后更新</label>
+                        <div>{{Display.datetime(obj.update_time)}}</div>
+                    </div>
+                </div>    
+
+            </div>
+        </div>
+        <div class="footer">
+            <div class="btns" v-if="!waiting.submit">
+                <div>
+                    <button class="btn danger" @click="delete_obj()" v-if="obj">删除</button>    
+                </div>
+                <div>
+                    <button class="btn ok" @click="submit()">确认</button>    
+                </div>
+            </div>
+            <div v-else>提交中...</div>    
+        </div>
+    </div>
+</div>
+
+<div class="dialog" :class="{active: reset.show}">
+    <div>
+        <div class="body">
+            <div class="part-form">
+                <div class="part">
+                    <div class="item">
+                        <label class="required">登录密码</label>
+                        <div>
+                            <input type="password" v-model="reset.password" placeholder="设置密码" autocomplete="off">
+                            <span class="words">{{reset.password.length}}/128</span>
+                        </div>
+
+                    </div>
+                    <div class="item">
+                        <label class="required">重复密码</label>
+                        <input  type="password" v-model="reset.repeat" placeholder="重复密码" autocomplete="off">
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            <div class="btns" v-if="!waiting.submit">
+                <div>
+                    <button class="btn btn-secondary" @click="reset.show=false">取消</button>    
+                </div>
+                <div>
+                    <button class="btn btn-ok" @click="submitPassword()">确认</button>    
+                </div>
+            </div>
+            <div v-else>提交中...</div>    
+        </div>
+    </div>
+</div>
